@@ -1,0 +1,766 @@
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/*============================*/
+/*========= LIGHTBOX ========*/
+
+#lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-items: center;
+  align-items: center;
+  background: rgba(0, 0, 0, .75);
+  z-index: 45;
+}
+  #lightboxContent {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    width: 75%;
+    max-width: 1100px;
+    min-height: 600px;
+    background: #eae3d3;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, .25);
+    padding: 40px;
+  }
+    #lightboxDetails {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 50px;
+      align-items: center;
+    }
+      #lightboxImage {
+        justify-self: center;
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        border: 1px solid #b68a3a;
+      }
+      #lightboxText {
+        display: grid;
+        align-content: center;
+        gap: 20px;
+      }
+      #bookTitle {
+        font-family: "Big Shoulders Inline", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 800;
+        font-style: normal;
+        font-size: 2.8em;
+        color: #b68a3a;
+      }
+      #bookAuthor {
+        font-family: "Big Shoulders Inline", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 2em;
+        color: #fff;
+      }
+      #synopsis {
+        margin-top: 2%;
+        font-family: "Big Shoulders Inline", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 1.3em;
+        line-height: 1.4;
+      }
+      #ogPrice {
+        margin-top: 5%;
+        color: #f00;
+        font-size: 1.9em;
+        font-family: "Big Shoulders Inline", sans-serif;
+        font-family: "Contrail One", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        text-decoration: line-through;
+      }
+      #nPrice {
+        color: #17b017;
+        font-size: 2em;
+        font-family: "Contrail One", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+#closeBtn {
+  justify-self: end;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background: #b68a3a;
+  color: #fff;
+  font-size: 1.6em;
+  cursor: pointer;
+  transition: .3s;
+}
+#closeBtn:hover {
+  background: #081046;
+}
+#nextBtn {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 4.6em;
+  cursor: pointer;
+  transition: .3s;
+}
+#nextBtn:hover {
+  color: #e4c433;
+}
+
+/*====================*/
+/*======= #TOP =======*/
+
+.logo {
+  width: 140px;
+  height: auto;
+  z-index: 5;
+  position: fixed;
+  left: 35px;
+  top: 35px;
+  filter:
+    drop-shadow(0 0 8px rgba(0,0,0,.5))
+    drop-shadow(0 0 18px rgba(0,0,0,.3));
+}
+  .logo:hover {
+    transform: scale(1.08) rotate(-3deg);
+  }
+#hamburger {
+  width: 60px;
+  height: 80px;
+  position: fixed;
+  top: 40px;
+  right: 60px;
+  z-index: 11;
+  cursor: pointer;
+}
+  .bar {
+    width: 80px;
+    height: 15px;
+    background: #b68a3a;
+    margin: 5px 0;
+    border-radius: 4px;
+  }
+#hamburger.open .bar:nth-child(1) {
+  transform: translateY(20px) rotate(45deg);
+}
+#hamburger.open .bar:nth-child(2) {
+  opacity: 0;
+}
+#hamburger.open .bar:nth-child(3) {
+  transform: translateY(-20px) rotate(-45deg);
+}
+nav {
+  position: fixed;
+  width: 500px;
+  height: 100vh;
+  background: #677789;
+  right: -100vw;
+  top: 0;
+  border-left: 2px solid #b68a3a;
+  padding: 150px 30px 30px;
+  text-align: right;
+  z-index: 7;
+}
+  nav > a {
+    text-decoration: none;
+    font-size: 4.4em;
+    color: #000;
+    display: block;
+    margin: 10% auto;
+    font-family: "Big Shoulders Inline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+
+  }
+  nav > a:hover {
+    color: #b68a3a;
+    text-decoration: underline;
+  }
+  #social {
+    width: 360px;
+    min-height: 100px;
+    position: relative;
+    margin-top: 20%;
+    margin-left: auto;
+  }
+  #social > a {
+    margin: 5px 10px;
+    text-decoration: none;
+  }
+body {
+  background: #eae3d3;
+}
+
+/*===============================*/
+/*========== CSS GRID ==========*/
+
+#grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(500px, auto);
+  grid-template-areas: 
+    "hdr hdr hdr hdr hdr hdr hdr hdr hdr hdr hdr hdr"
+    "abt abt abt abt abt abt abt abt abt abt abt abt"
+    "shp shp shp shp shp shp shp shp shp shp shp shp"
+    "spt spt spt spt spt spt spt spt spt spt spt spt"
+    "con con con con con con con con con con con con"
+    "ftr ftr ftr ftr ftr ftr ftr ftr ftr ftr ftr ftr";
+}
+header {
+  display: grid;
+  grid-area: hdr;
+  background: url('../assets/images/headerBkg.png');
+  background-size: cover;
+  height: 1000px;
+}
+  .hdrText {
+    text-align: center;
+    font-size: 5em;
+    background: rgba(3, 7, 10, .45);
+    padding:60px;
+    padding-top: 10%;
+    border-radius:20px;
+    backdrop-filter: blur(5px);
+  }
+  .hdrText > h1{
+    color: #fce2b1;
+    font-family: "Big Shoulders Inline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+  }
+  .hdrText > h2 {
+    color: #fbf0dc;
+    font-family: "Big Shoulders Inline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .hdrText > h1, h2 {
+    text-shadow: 3px 3px 12px rgba(0, 0, 0, .75);
+  }
+#about {
+  display: grid;
+  grid-area: abt;
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+}
+  .abtText {
+    background: #fff;
+    padding: 10% 10%;
+    justify-items: center;
+  }
+    .abtText > h1 {
+      font-size: 6em;
+      margin-bottom: 8%;
+      color: #677789;
+      font-family: "Big Shoulders Inline", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 900;
+      font-style: normal;
+    }
+    .abtText > p {
+      font-size: 2.3em;
+      margin: 2%;
+      font-family: "Big Shoulders Inline", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+    }
+  .abtImage {
+    background: #081046;
+    width: 100%;
+    padding: 2% 2%;
+  }
+    .abtImage > img {
+      width: 100%;
+      border-radius: 16px;
+      border: 2px solid #fff
+    }
+#shop {
+  display: grid;
+  grid-area: shp;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 30px;
+  margin: 5% 0;
+}
+.shopText {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  padding: 0 8%;
+  justify-items: center;
+}
+  .shopText > h1 {
+    font-size: 6em;
+    color: #b68a3a;
+    margin-bottom: 5%;
+    font-family: "Big Shoulders Inline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+  }
+  .shopText > p {
+    font-size: 2.3em;
+    line-height: 1.5;
+    font-family: "Big Shoulders Inline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+.shopCard {
+  min-height: 400px;
+  background: #f1e0b7;
+  border: 2px solid #fff;
+  padding: 2%;
+  margin-left: 3%;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0.3s ease;
+  cursor: pointer;
+}
+  .shopCard:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .25);
+  }
+  .shopCard > img {
+    width: 100%;
+    border-radius: 16px;
+    border: 2px solid #b68a3a;
+    transition: transform .3s ease;
+  }
+    .shopCard:hover > img {
+      transform: scale(1.05);
+    }
+  .bookTitle {
+    color: #fff;
+    margin: 2% 0;
+    font-size: 2.3em;
+    font-family: "Big Shoulders Inline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .bookAuthor {
+    color: #fff;
+    margin: 2% 0;
+    font-size: 2.3em;
+    font-family: "Big Shoulders Inline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .shopCard > h3 {
+    color: #000;
+    margin: 2%;
+    font-size: 1.6em;
+    font-family: "Contrail One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+    .bRed {
+      color: #f00;
+    }
+    .red {
+      color: #f00;
+      font-style: italic;
+      text-decoration: line-through;
+    }
+    .green {
+      color: #17b017;
+    }
+#spotlight {
+  display: grid;
+  grid-area: spt;
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  background: #444;
+}
+.spotText {
+  justify-items: center;
+}
+  .spotText > h1 {
+    font-size: 6em;
+    margin: 5%;
+    padding: 2%;
+    color: #b68a3a;
+    font-family: "Big Shoulders Inline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+  }
+  .spotText > p {
+    font-size: 2.3em;
+    margin: 5% 0;
+    padding: 0 15%;
+    color: #fff;
+    font-family: "Contrail One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .white {
+    color: #fff;
+    font-family: "Big Shoulders Inline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+  }
+  .gold {
+    color: #e4c433;
+  }
+.spotImage {
+  min-height: 400px;
+  padding: 10% 0;
+}
+  .spotImage > img {
+    border-radius: 50%;
+    width: 80%;
+    border: 2px solid #fff;
+  }
+#contact {
+  display: grid;
+  grid-area: con;
+  width: 100%;
+  min-width: 650px;
+  justify-self: center;
+  background: #eae3d3;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 80px;
+  padding: 80px;
+  height: 600px;
+}
+.conText {
+  text-align: center;
+  color: #000;
+  grid-column: 1;
+  width: 100%;
+}
+  .conText > h1 {
+    font-size: 5em;
+    margin: 5% 0;
+    padding: 2%;
+    font-family: "Big Shoulders Inline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    color: #081046;
+  }
+  .conText > p {
+    margin: 5% 0;
+    padding: 0;
+    font-size: 2.3em;
+    font-family: "Big Shoulders Inline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+  }
+.contactForm {
+  min-width: 650px;
+  width: 100%;
+  grid-column: 2;
+  justify-items: center;
+  max-height: 833px;
+  padding: 30px;
+  background: #f1e0b7;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+  font-family: Arial, sans-serif;
+  font-family: "Big Shoulders Inline", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2em;
+  }
+  .contactForm h2 {
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  .contactForm label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
+  }
+  .contactForm input,
+  .contactForm select,
+  .contactForm textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bbd;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    font-family: "Big Shoulders Inline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .contactForm textarea {
+    resize: vertical;
+  }
+  .contactForm button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background: #b68a3a;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    font-family: "Big Shoulders Inline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .contactForm button:hover {
+    background: #081046;
+  }
+footer {
+  display: grid;
+  grid-area: ftr;
+  grid-template-columns: 1fr auto 1fr;
+  width: 100%;
+  background: #fef6e5;
+  color: #000;
+  font-size: 1.9em;
+  font-family: "Big Shoulders Inline", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  height: 300px;
+  align-items: center;
+}
+  .ftrLogo {
+    justify-self: start;
+    margin-left: 40px;
+    width: 140px;
+    height: auto;
+    filter:
+      drop-shadow(0 0 8px rgba(0,0,0,.5))
+      drop-shadow(0 0 18px rgba(0,0,0,.3));
+  }
+    .ftrLogo:hover {
+      transform: scale(1.08);
+    }
+  .ftrText {
+    justify-self: center;
+  }
+  .ftrNav {
+    justify-self: end;
+    margin-right: 40px;
+  }
+    .ftrNav > a {
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+/*=============================*/
+/*======== ANIMATIONS ========*/
+
+.hidden {
+  opacity: 0;
+  transition:
+    opacity 1.0s ease,
+    transform 1.0s ease;
+}
+.from-top {
+  transform: translateY(-30px);
+}
+.from-bottom {
+  transform: translateY(40px);
+}
+.from-left{
+  transform: translateX(-70px);
+}
+.from-right {
+  transform: translateX(70px);
+}
+  .delay-1 {
+    transition-delay: .2s;
+  }
+  .delay-2 {
+    transition: transform .35s ease;
+    opacity: .25s ease;
+  }
+.show {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+.shopCard:nth-child(1) {
+  transition-delay: 0s;
+}
+.shopCard:nth-child(2) {
+  transition-delay: 0.15s;
+}
+.shopCard:nth-child(3) {
+  transition-delay: 0.30s;
+}
+.shopCard:nth-child(4) {
+  transition-delay: 0.45s;
+}
+
+/*==============================*/
+/*======= MEDIA QUERIES =======*/
+
+@media screen and (max-width: 1800px) {
+  #about {
+    grid-template-columns: 1fr;
+  }
+  #spotlight {
+    grid-template-columns: 1fr;
+  }
+    .spotText {
+      order: 1;
+      text-align: center;
+    }
+      .spotText > h1 {
+        font-size: 4em;
+      }
+      .spotText > p {
+        font-size: 1.8em;
+      }
+    .spotImage {
+      order: 2;
+      justify-self: center;
+      margin-left: 12%;
+      width: 60%;
+    }
+}
+@media screen and (max-width: 1350px) {
+  .hdrText {
+    font-size: 3.5em;
+    padding: 100px;
+    padding-top: 20%
+  }
+  #shop {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 40px;
+    padding: 40px;
+  }
+    .shopText {
+      order: 1;
+      grid-column: auto;
+      grid-row: auto;
+      text-align: center;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+    .shopCard {
+      order: 2;
+      margin: 0 auto;
+      width: 80%;
+    }
+  #contact {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 50px;
+    height: auto;
+  }
+    .conText {
+      grid-column: auto;
+    }
+    .contactForm {
+      grid-column: auto;
+      min-width: 100%;
+    }
+  footer {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 30px;
+    padding: 40px 0;
+  }
+    footer > div:first-child {
+      justify-self: center;
+    }
+    .ftrText,
+    .ftrNav {
+      justify-self: center;
+      margin: 0;
+    }
+  #lightboxContent {
+    width: 90%;
+  }
+    #lightboxDetails {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+      #lightboxImage {
+        width: 60%;
+      }
+      #lightboxText {
+        text-align: center;
+      }
+  #nextBtn {
+    right: 10%;
+    font-size: 5em;
+    color: #000;
+  }
+}
+@media screen and (max-width: 950px) {
+  .logo {
+    width: 100px;
+    left: 50px;
+    top: 50px;
+    z-index: 55;
+  }
+  #hamburger {
+    width: 50px;
+    height: 65px;
+  }
+    .bar {
+      width: 62px;
+      height: 12px;
+      top: 50px;
+    }
+    #hamburger.open .bar:nth-child(1) {
+      transform: translateY(18px) rotate(45deg);
+    }
+    #hamburger.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+    #hamburger.open .bar:nth-child(3) {
+      transform: translateY(-18px) rotate(-45deg);
+    }
+  nav {
+    width: 100vw;
+    right: -100vw;
+    text-align: center;
+  }
+    nav > a {
+      font-size: 4.6em;
+      color: #b68a3a;
+    }
+    #social {
+      width: 100%;
+    }
+  .hdrText {
+    font-size: 2.5em;
+    padding-top: 40%;
+  }
+  .spotText > p {
+    font-size: 1.4em;
+  }
+  .conText {
+    text-align: center;
+  }
+}
