@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:opsz,wght@10..72,100..900&family=Contrail+One&display=swap" rel="stylesheet">
+  <script src="js/jquery.js" defer async></script>
+  <script src="js/app.js" defer async></script>
+  <link rel="stylesheet" href="css/app.css">
+  <title>Finley Books</title>
+</head>
+<body id="top">
+  <div id="lightbox">
+    <div id="lightboxContent">
+      <button id="closeBtn">x</button>
+      <button id="nextBtn">&rarr;</button>
+      <div id="lightboxDetails">
+        <img id="lightboxImage" src="" alt="">
+        <div id="lightboxText">
+          <h1 id="bookTitle"></h1>
+          <h2 id="bookAuthor"></h2>
+          <p id="synopsis"></p>
+          <h3 id="ogPrice"></h3>
+          <h3 id="nPrice"></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#top" title="home" onclick="closeMenu();">
+    <img class="logo hidden from-left delay-2" src="assets/images/logo2.png" alt="logo">
+  </a>
+  <div id="hamburger" onclick="toggleMenu();">
+    <div class="bar hidden from-right delay-2"></div>
+    <div class="bar hidden from-right delay-2"></div>
+    <div class="bar hidden from-right delay-2"></div>
+  </div>
+  <nav>
+    <a href="#about" onclick="closeMenu();">About Finley</a>
+    <a href="#shop" onclick="closeMenu();">Top Picks</a>
+    <a href="#spotlight" onclick="closeMenu();">Spotlight</a>
+    <a href="#contact" onclick="closeMenu();">Contact Us</a>
+    <div id="social" onclick="closeMenu()">
+      <a href="https://www.facebook.com" target="_blank">
+        <img src="assets/images/facebook.png" alt="Facebook">
+      </a>
+      <a href="https://www.instagram.com" target="_blank">
+        <img src="assets/images/instagram.png" alt="Instagram">
+      </a>
+      <a href="https://x.com" target="_blank">
+        <img src="assets/images/twitter.png" alt="X-icon">
+      </a>
+      <a href="https://www.tiktok.com/en/" target="_blank">
+        <img src="assets/images/tiktok.png" alt="TikTok">
+      </a>
+    </div>
+  </nav>
+
+  <!-- CSS GRID CODE STARTS HERE -->
+
+  <div id="grid">
+    <header>
+      <div class="hdrText hidden from-top">
+        <h1>FINLEY BOOKS</h1>
+        <h2>Where the raw mechanics of writing and the joy of reading intersect.</h2>
+      </div>
+    </header>
+    <section id="about">
+      <div class="abtText hidden from-bottom">
+        <h1>Our Story</h1>
+        <p>At Finley Books, we believe the best stories are built from the ground up. Our doors opened with a simple mission: to provide a sanctuary where the raw mechanics of writing and the joy of reading intersect. We are more than just a place to buy books; we are a dedicated space for literary development, championing everything from tightly woven short stories to sweeping, long-form narratives.</p>
+        <p>Our founders understood that true creativity requires a focused, distraction-free environment. That is why our shelves are curated to inspire those who appreciate the unadorned beauty of plain text and the quiet discipline of drafting. The wandering figure in our logo serves as our emblem -- a reminder that every reader and writer is on a continuous journey of discovery, moving purposefully toward their next chapter.</p>
+        <p>Whether you are hunting for a rare edition, seeking a quiet corner to edit your latest manuscript, or simply looking to connect with a community that respects the structural craft of storytelling, you have found your place. Step into Finley Books, find your focus, and let the narrative take over.</p>
+      </div>
+      <div class="abtImage hidden from-bottom">
+        <img src="assets/images/abtImage.jpg" alt="about-image">
+      </div>
+    </section>
+    <section id="shop">
+      <div class="shopCard hidden from-bottom">
+        <img src="assets/images/book0.png" alt="book0">
+        <h2 class="bookTitle">How To Think CSS</h2>
+        <h2 class="bookAuthor">~ Michael Lewis ~</h2>
+        <h3 class="originalPrice"><span class="red">($34.99)</span></h3>
+        <h3 class="salePrice"><span class="green">$21.00</span></h3>
+      </div>
+      <div class="shopCard hidden from-bottom">
+        <img src="assets/images/book1.png" alt="book1">
+        <h2 class="bookTitle">Existential Javascript</h2>
+        <h2 class="bookAuthor">~ Michael Lewis ~</h2>
+        <h3 class="originalPrice"><span class="red">($34.99)</span></h3>
+        <h3 class="salePrice"><span class="green">$21.00</span></h3>
+      </div>
+      <div class="shopCard hidden from-bottom">
+        <img src="assets/images/book2.png" alt="book2">
+        <h2 class="bookTitle">Centering A Div: A Memoir</h2>
+        <h2 class="bookAuthor">~ Michael Lewis ~</h2>
+        <h3 class="originalPrice"><span class="red">($34.99)</span></h3>
+        <h3 class="salePrice"><span class="green">$21.00</span></h3>
+      </div>
+      <div class="shopCard hidden from-bottom">
+        <img src="assets/images/book3.png" alt="book3">
+        <h2 class="bookTitle">Float: <span class="bRed">NONE</span></h2>
+        <h2 class="bookAuthor">~ Michael Lewis ~</h2>
+        <h3 class="originalPrice"><span class="red">($34.99)</span></h3>
+        <h3 class="salePrice"><span class="green">$21.00</span></h3>
+      </div>
+      <div class="shopText hidden from-bottom">
+        <h1>Top Picks</h1>
+        <p>These selections are not driven by algorithms or mass-market trends; they are the hand-picked favorites championed by our own community of Finley's Readers. Whether you are looking for a quick escape or committing to a long-term read with a beast of a novel, these titles have sparked deep emotional connections and passionate discussions among your fellow patrons. Browse the curated recommendation cards below to discover the next essential addition to your personal library.</p>
+      </div>
+    </section>
+    <section id="spotlight">
+      <div class="spotText hidden from-left">
+        <h1><span class="white">SPOTLIGHT:</span> Meet Michael Lewis</h1>
+        <p>This month, the Finley Books spotlight shines on our star author, <span class="gold">Michael Lewis</span>. By day (and most evenings), Michael is a professor at TriOS College, where he brings a remarkably good-natured and humorous approach to his students and his curriculum. By night, he is a storyteller and creator who just released his highly anticipated new release, Centering A Div: A Memoir -- a witty, reflective journey that anyone who has ever wrestled with web layouts (or life's stubborn alignments) will deeply appreciate. When he is not grading assignments or writing his next chapter, Michael spends his free time producing his own music, and has enjoyed tremendous success under his pseudonym, "DAKUMA." You can check out his YouTube Channel, Chilldeck, where his greatest hits live. Michael is truly a testament to the idea that the best narratives -- and the best melodies -- come from those who never stop creating.</p>
+      </div>
+      <div class="spotImage hidden from-right">
+        <img src="assets/images/spotImage2.png" alt="spotlight-image">
+      </div>
+    </section>
+    <section id="contact">
+      <div class="conText hidden from-bottom">
+        <h1>We Want To Hear From You!</h1>
+        <p>Whether you are looking to book our space for an upcoming author event, have a question about a specific title, or want to share feedback on your latest visit, this is your direct line to the Finley Books team. We are also deeply committed to fostering new literary talent. If you are a writer looking for a publisher, use the form below to submit your manuscripts and short stories. Fill out the fields below to reach out, and let us know how we can help.</p>
+      </div>
+      <form class="contactForm hidden from-bottom delay-1">
+        <h2>Contact Us</h2>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+        <label for="service">Query</label>
+        <select id="service" name="service" required>
+          <option value="query">What's your query?</option>
+          <option value="event">Book an event</option>
+          <option value="general">General Inquiries</option>
+          <option value="feedback">Feedback</option>
+          <option value="submission">Submit a manuscript</option>
+          <option value="donation">Donate a book or collection</option>
+        </select>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell us how we can help" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </div>
+  <footer class="hidden">
+    <div>
+      <a href="index.html" title="refresh-home">
+        <img class="ftrLogo delay-2" src="assets/images/logo2.png" alt="logo">
+      </a>
+    </div>
+    <div class="ftrText">
+      &copy; 2026, Finley Books. All rights reserved.
+    </div>
+    <div class="ftrNav">
+      <a href="https://www.facebook.com" target="_blank">
+        <img src="assets/images/facebook2.png" alt="Facebook">
+      </a>
+      <a href="https://www.instagram.com" target="_blank">
+        <img src="assets/images/instagram2.png" alt="Instagram">
+      </a>
+      <a href="https://x.com" target="_blank">
+        <img src="assets/images/twitter2.png" alt="X-icon">
+      </a>
+      <a href="https://www.tiktok.com/en/" target="_blank">
+        <img src="assets/images/tiktok2.png" alt="TikTok">
+      </a>
+    </div>
+  </footer>
+</body>
+</html>
